@@ -1,0 +1,14 @@
+.main .data_section{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.list_section{
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+
+.google_map_section{
+  grid-column-start: 2;
+  grid-column-end: 4;
+}

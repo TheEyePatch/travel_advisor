@@ -1,9 +1,9 @@
 import React from "react";
 
-function LocationDetails(){
+function LocationDetails(props){
   return (
-    <h2>Details Section</h2>
+    <h2 className={props.className}>Details Section</h2>
   )
 }
 
-export default Map
+export default LocationDetails
