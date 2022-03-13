@@ -1,5 +1,6 @@
 .map{
   height: 70vh;
-  padding-left: 20px;
-  padding-right: 30px;
+  margin-right: 20px;
+  margin-left: 10px;
+  border: 1px solid red;
 }
