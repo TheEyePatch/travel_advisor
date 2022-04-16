@@ -2,12 +2,18 @@ import React from "react";
 import GoogleMapReact from 'google-map-react';
 import styles from './Map.module.css'
 
-function Map(props){
+function Map({className, setCoordinates, setBounds, coordinates, bounds}){
+  const handleChange = (e) => {
+    // For Coordinates
+    setCoordinates(e.center)
+    setBounds(e.bounds)
 
-  const coordinates= {lat:0, lng: 0}
+    console.log(coordinates)
+    console.log(bounds)
+  }
 
   return (
-    <div className={`${props.className} ${styles.map}`}>
+    <div className={`${className} ${styles.map}`}>
       <GoogleMapReact
         bootstrapURLKeys={{ 
           key: 'AIzaSyB8hZaiUpwPEFMFMpe9bZhVM4d7cdiiIBk',
@@ -15,7 +21,8 @@ function Map(props){
         }}
         defaultCenter={coordinates}
         center={coordinates}
-        defaultZoom={14}
+        defaultZoom={13}
+        onChange={handleChange}
       >
 
       </GoogleMapReact>
