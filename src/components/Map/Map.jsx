@@ -2,14 +2,13 @@ import React from "react";
 import GoogleMapReact from 'google-map-react';
 import styles from './Map.module.css'
 
-function Map({className, setCoordinates, setBounds, coordinates, bounds}){
+function Map({className, setCoordinates, setBounds, coordinates}){
   const handleChange = (e) => {
     // For Coordinates
     setCoordinates(e.center)
-    setBounds(e.bounds)
 
-    console.log(coordinates)
-    console.log(bounds)
+    // For Boundaries
+    setBounds(e.bounds)
   }
 
   return (

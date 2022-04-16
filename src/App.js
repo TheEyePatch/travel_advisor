@@ -11,14 +11,17 @@ function App(){
   const [coordinates, setCoordinates] = useState({lat: 14.630473624869978, lng: 481.02126039567804})
   const [bounds, setBounds] = useState(null)
 
-  // const getHotels = async () => {
-  //   const data = await getPlacesData()
-  //   console.log(data)
-  //   setPlaces(data)
-  // }
-  // useEffect(() => {
-  //   getHotels()
-  // }, [])
+  const getHotels = async () => {
+    const data = await getPlacesData()
+    console.log(data)
+    setPlaces(data)
+  }
+
+  useEffect(() => {
+    // getHotels()
+    console.log(coordinates)
+    console.log(bounds)
+  }, [bounds, coordinates])
 
   return (
     <div className={styles.main}>
@@ -30,7 +33,6 @@ function App(){
           setCoordinates={setCoordinates}
           setBounds={setBounds}
           coordinates={coordinates}
-          bounds={bounds}
         />
       </div>
       
