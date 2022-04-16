@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const getHotelsData = async () => {
+export const getPlacesData = async () => {
   try {
     const options = {
       params: {
