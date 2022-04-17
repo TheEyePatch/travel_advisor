@@ -2,39 +2,15 @@ import React, { useState, useEffect } from 'react'
 import styles from './List.module.css'
 import LocationDetails from '../LocationDetails/LocationDetails'
 
-function List(){
-  
-  const [places, setPlaces] = useState([])
-  const [place_type, setType] = useState('hotel')
-  const types = ['hotel', 'restaurants', 'attractions']
-  const data = [
-    { name: 'Baguio Restaurant One', timezone: 'PH TimeZone' },
-    { name: 'Baguio Restaurant Two', timezone: 'PH TimeZone' },
-    { name: 'Baguio Restaurant Three', timezone: 'PH TimeZone'},
-    { name: 'Baguio Restaurant Four', timezone: 'PH TimeZone'},
-    { name: 'Baguio Restaurant Five', timezone: 'PH TimeZone'},
-    { name: 'Baguio Restaurant Six', timezone: 'PH TimeZone'},
-    { name: 'Baguio Restaurant Seven', timezone: 'PH TimeZone'},
-    { name: 'Baguio Restaurant Eight', timezone: 'PH TimeZone'},
-    { name: 'Baguio Restaurant Nine', timezone: 'PH TimeZone'},
-    { name: 'Baguio Restaurant Ten', timezone: 'PH TimeZone'},
-    { name: 'Baguio Restaurant Eleven', timezone: 'PH TimeZone'},
-    { name: 'Baguio Restaurant Twelve', timezone: 'PH TimeZone'},
-    { name: 'Baguio Restaurant Thirteen', timezone: 'PH TimeZone'},
-    { name: 'Baguio Restaurant Fourteen', timezone: 'PH TimeZone'},
-    { name: 'Baguio Restaurant Eighteen', timezone: 'PH TimeZone'}
-  ]
+function List({places, place_type, setType}){
 
+  const types = ['hotel', 'restaurants', 'attractions']
+  
   const changeTypeHandler = (e) => {
     let type = e.target.value
-    console.log(type)
     setType(type)
   }
 
-  useEffect(() => {
-    setPlaces(data)
-    console.log(data)
-  }, [])
 
   return (
     <div className={styles.container}>
@@ -53,6 +29,7 @@ function List(){
         places?.map(place => {
           return (
             <li key={place.name} className={styles.list_item}>
+              <img src={place.photo?.images.medium.url} alt="" className={styles.photo}/>
               <h1>{place.name}</h1>
               <p>{place.timezone}</p>
             </li>
