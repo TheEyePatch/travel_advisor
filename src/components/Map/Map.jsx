@@ -18,7 +18,7 @@ function Map({className, setCoordinates, setBounds, coordinates}){
           key: 'AIzaSyB8hZaiUpwPEFMFMpe9bZhVM4d7cdiiIBk',
           language: 'en' 
         }}
-        defaultCenter={coordinates}
+        defaultCenter={{lat: 14.630473624869978, lng: 481.02126039567804}}
         center={coordinates}
         defaultZoom={13}
         onChange={handleChange}
