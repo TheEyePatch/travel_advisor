@@ -11,23 +11,30 @@ function App(){
   const [coordinates, setCoordinates] = useState({lat: 14.630473624869978, lng: 481.02126039567804})
   const [bounds, setBounds] = useState(null)
 
-  const getHotels = async () => {
-    const data = await getPlacesData()
-    console.log(data)
-    setPlaces(data)
+  const [place_type, setType] = useState('hotel')
+
+  const getHotels = async (bounds, place_type) => {
+    const data = await getPlacesData(bounds.sw, bounds.ne, place_type)
+    console.log(data.data)
+    setPlaces(data.data)
   }
 
   useEffect(() => {
-    // getHotels()
-    console.log(coordinates)
+    console.log(place_type)
     console.log(bounds)
-  }, [bounds, coordinates])
+    getHotels(bounds, place_type)
+  }, [bounds, place_type])
 
   return (
     <div className={styles.main}>
       <Header/>
       <div className={styles.data_section}>
-        <List className={styles.list_section}/>
+        <List
+        className={styles.list_section}
+        places={places}
+        place_type={place_type}
+        setType={setType}
+        />
         <Map 
           className={styles.google_map_section}
           setCoordinates={setCoordinates}
