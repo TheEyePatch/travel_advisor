@@ -11,7 +11,7 @@ function App(){
   const [coordinates, setCoordinates] = useState({lat: 14.630473624869978, lng: 481.02126039567804})
   const [bounds, setBounds] = useState(null)
 
-  const [place_type, setType] = useState('hotel')
+  const [place_type, setType] = useState('hotels')
 
   const getHotels = async (bounds, place_type) => {
     const data = await getPlacesData(bounds.sw, bounds.ne, place_type)

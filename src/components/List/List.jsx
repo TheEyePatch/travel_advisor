@@ -4,13 +4,12 @@ import LocationDetails from '../LocationDetails/LocationDetails'
 
 function List({places, place_type, setType}){
 
-  const types = ['hotel', 'restaurants', 'attractions']
+  const types = ['hotels', 'restaurants', 'attractions']
   
   const changeTypeHandler = (e) => {
     let type = e.target.value
     setType(type)
   }
-
 
   return (
     <div className={styles.container}>
@@ -28,7 +27,7 @@ function List({places, place_type, setType}){
       {
         places?.map(place => {
           return (
-            <li key={place.name} className={styles.list_item}>
+            <li key={place.location_id} className={styles.list_item}>
               <img src={place.photo?.images.medium.url} alt="" className={styles.photo}/>
               <h1>{place.name}</h1>
               <p>{place.timezone}</p>
