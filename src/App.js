@@ -9,20 +9,20 @@ import { getPlacesData } from './api/index'
 function App(){
   const [places, setPlaces] = useState([]);
   const [coordinates, setCoordinates] = useState({lat: 14.630473624869978, lng: 481.02126039567804})
-  const [bounds, setBounds] = useState(null)
+  const [bounds, setBounds] = useState({})
 
   const [place_type, setType] = useState('hotels')
 
   const getHotels = async (bounds, place_type) => {
+    console.log(bounds)
     const data = await getPlacesData(bounds.sw, bounds.ne, place_type)
-    console.log(data.data)
     setPlaces(data.data)
   }
 
   useEffect(() => {
     console.log(place_type)
     console.log(bounds)
-    getHotels(bounds, place_type)
+    if(Object.keys(bounds).length > 0) getHotels(bounds, place_type)
   }, [bounds, place_type])
 
   return (

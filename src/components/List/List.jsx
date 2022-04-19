@@ -25,7 +25,7 @@ function List({places, place_type, setType}){
       <h1 className={styles.container_title}>{place_type.charAt(0).toUpperCase() + place_type.slice(1)}</h1>
       <ul className={styles.list_container}>
       {
-        places?.map(place => {
+        places?.filter(place => place.name).map(place => {
           return (
             <li key={place.location_id} className={styles.list_item}>
               <img src={place.photo?.images.medium.url} alt="" className={styles.photo}/>
