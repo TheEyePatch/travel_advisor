@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react'
 import Header from './components/Header/Header'
 import List from './components/List/List'
 import Map from './components/Map/Map'
-import styles from './App.module.css'
+import styles from './Main.module.css'
+import './App.less'
 
 import { getPlacesData } from './api/index'
 
@@ -41,6 +42,7 @@ function App(){
           setBounds={setBounds}
           coordinates={coordinates}
         />
+
       </div>
       
     </div>
