@@ -6,8 +6,10 @@ import styles from './Main.module.css'
 import './App.less'
 
 import { getPlacesData } from './api/index'
+import { Row, Col } from 'antd';
 
 function App(){
+
   const [places, setPlaces] = useState([]);
   const [coordinates, setCoordinates] = useState({lat: 14.630473624869978, lng: 481.02126039567804})
   const [bounds, setBounds] = useState({})
@@ -30,21 +32,25 @@ function App(){
     <div className={styles.main}>
       <Header/>
       <div className={styles.data_section}>
-        <List
-        className={styles.list_section}
-        places={places}
-        place_type={place_type}
-        setType={setType}
-        />
-        <Map 
-          className={styles.google_map_section}
-          setCoordinates={setCoordinates}
-          setBounds={setBounds}
-          coordinates={coordinates}
-        />
-
+        <Row>
+          <Col xs={{span: 24, order:1 }} md={{span: 10, order:0}} lg={8}>
+            <List
+            className={styles.list_section}
+            places={places}
+            place_type={place_type}
+            setType={setType}
+            />
+          </Col>
+          <Col xs={{span: 24, order: 0 }} md={{span: 14, order:1}} lg={16}>
+            <Map 
+              className={styles.google_map_section}
+              setCoordinates={setCoordinates}
+              setBounds={setBounds}
+              coordinates={coordinates}
+            />
+          </Col>
+        </Row>
       </div>
-      
     </div>
   )
 }

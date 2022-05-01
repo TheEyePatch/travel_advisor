@@ -1,43 +1,55 @@
 import React, { useState, useEffect } from 'react'
 import styles from './List.module.css'
 import LocationDetails from '../LocationDetails/LocationDetails'
+import { Card, Row, Col, Select } from'antd'
 
-function List({places, place_type, setType}){
+const { Option } = Select;
+
+function List({ className, places, place_type, setType}){
 
   const types = ['hotels', 'restaurants', 'attractions']
   
-  const changeTypeHandler = (e) => {
-    let type = e.target.value
-    setType(type)
+  const changeTypeHandler = (value) => {
+    setType(value)
   }
 
   return (
-    <div className={styles.container}>
+    <div className={styles.list_section}>
       <h3 className={styles.container_header}>Restaurants, Hotels & Attractions around you</h3>
-      <select value={place_type} onChange={changeTypeHandler} className={styles.list_type_select}>
+      <div className={styles.list_type_select}>
+        <Select defaultValue="hotels" style={{ width: 300 }} onChange={changeTypeHandler}>
         {
           types?.map(type => {
-            return <option value={type} key={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</option>
+            return <Option value={type}>{type.charAt(0).toUpperCase() + type.slice(1)}</Option>
           })
         }
-      </select>
-
-      <h1 className={styles.container_title}>{place_type.charAt(0).toUpperCase() + place_type.slice(1)}</h1>
-      <ul className={styles.list_container}>
-      {
-        places?.filter(place => place.name).map(place => {
-          return (
-            <li key={place.location_id} className={styles.list_item}>
-              <img src={place.photo?.images.medium.url} alt="" className={styles.photo}/>
-              <h1>{place.name}</h1>
-              <p>{place.timezone}</p>
-            </li>
-          )
-        })
-      }
-      </ul>
-      
-    </div> 
+        </Select>
+      </div>
+      <div className={"site-card-border-less-wrapper " + styles.list_container}>
+        <Row gutter={[0, 16]}>
+        {
+          places?.filter(place => place.name).map(place => {
+            return (
+              <Col span={20}>
+                <Card
+                  title="Card title"
+                  bordered={true}
+                  style={{ width: '80%' }}
+                  hoverable={true}
+                >
+                  <li key={place.location_id}>
+                    <img src={place.photo?.images.medium.url} alt="" className={styles.photo}/>
+                    <h1>{place.name}</h1>
+                    <p>{place.timezone}</p>
+                  </li>
+                </Card>
+              </Col>
+            )
+          })
+        }
+        </Row>
+      </div>
+    </div>
   )
 }
 
