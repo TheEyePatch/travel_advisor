@@ -1,15 +1,15 @@
 .main .data_section{
+  box-sizing: border-box;
+  position: relative;
   margin-top: .5rem;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-}
-
-.list_section{
-  grid-column-start: 1;
-  grid-column-end: 2;
+  margin-bottom: .5rem;
 }
 
 .google_map_section{
-  grid-column-start: 2;
-  grid-column-end: 4;
+  height: 85vh;
+}
+
+.list_section{
+  border: 1px solid brown;
+  height: 95vh;
 }
