@@ -9,3 +9,10 @@
   margin: 0;
   padding: 0;
 }
+.mapCardContainer:hover{
+  width: 150px;
+  transition: width .2s;
+}
+.card:hover{
+  z-index: 10;
+}

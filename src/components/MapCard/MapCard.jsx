@@ -12,6 +12,7 @@ function MapCard({key, place, lat, lng}){
       key={key}
     >
       <Card
+        className={styles.card}
         size="small"
         style={{width: '100%'}}
         cover={<img src={place.photo?.images.medium.url} alt="" className={styles.photo}/>}
