@@ -11,20 +11,26 @@ import { Row, Col } from 'antd';
 function App(){
 
   const [places, setPlaces] = useState([]);
-  const [coordinates, setCoordinates] = useState({lat: 14.630473624869978, lng: 481.02126039567804})
+  const [coordinates, setCoordinates] = useState({})
   const [bounds, setBounds] = useState({})
 
   const [place_type, setType] = useState('hotels')
 
   const getHotels = async (bounds, place_type) => {
-    console.log(bounds)
     const data = await getPlacesData(bounds.sw, bounds.ne, place_type)
     setPlaces(data.data)
   }
 
   useEffect(() => {
-    console.log(place_type)
-    console.log(bounds)
+    navigator.geolocation.getCurrentPosition( ({coords}) => {
+      console.log(coords)
+      setCoordinates({lat: coords.latitude, lng: coords.longitude}) 
+    }, error => { 
+      console.log(error)
+    });
+    }, [])
+
+  useEffect(() => {
     if(Object.keys(bounds).length > 0) getHotels(bounds, place_type)
   }, [bounds, place_type])
 
@@ -47,6 +53,7 @@ function App(){
               setCoordinates={setCoordinates}
               setBounds={setBounds}
               coordinates={coordinates}
+              places={places}
             />
           </Col>
         </Row>
