@@ -1,0 +1,11 @@
+.mapCardContainer{
+  background-color: white;
+  width: 120px;
+  padding: 1px;
+}
+
+.mapCardContainer p{
+  font-size: small;
+  margin: 0;
+  padding: 0;
+}
