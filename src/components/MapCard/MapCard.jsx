@@ -1,5 +1,5 @@
 import { EnvironmentFilled } from '@ant-design/icons';
-import { Card } from 'antd'
+import { Card, Rate } from 'antd'
 import styles from './MapCard.module.css'
 
 
@@ -20,7 +20,7 @@ function MapCard({key, place, lat, lng}){
         hoverable={true}
       >
         <p>Price: {place.price}</p>
-        <p>Ratings {place.rating}</p>
+        <Rate disabled allowHalf defaultValue={place.num_reviews} style={{fontSize: '12px'}} />
       </Card>
     </div>
   )

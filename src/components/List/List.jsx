@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import styles from './List.module.css'
 import LocationDetails from '../LocationDetails/LocationDetails'
-import { Card, Row, Col, Select } from'antd'
+import { Card, Row, Col, Select, Rate } from'antd'
 import { InfoCircleFilled } from '@ant-design/icons';
 const { Option } = Select;
 const { Meta } = Card;
@@ -44,9 +44,9 @@ function List({ className, places, place_type, setType}){
                     description={place.timezone}
                     key={index}
                   />
-                  <Meta description={`Price: ${place.price}`}/>
-                  <Meta description={`Rating: ${place.rating}`}/>
-                  <Meta description={`Reviews: ${place.num_reviews}`}/>
+                  <Meta description={`Price: ${place.price ? place.price : 'N/A'}`}/>
+                  <Rate disabled allowHalf defaultValue={place.num_reviews} />
+                  <br/>
                   <InfoCircleFilled 
                     style={{ marginTop: '12px', fontSize: '20px', color: '#00BFFF' }}/>
                   {/* Note that can still add elements */}
