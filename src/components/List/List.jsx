@@ -1,10 +1,11 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import styles from './List.module.css'
-import LocationDetails from '../LocationDetails/LocationDetails'
-import { Card, Row, Col, Select, Rate } from'antd'
-import { InfoCircleFilled } from '@ant-design/icons';
+// import LocationDetails from '../LocationDetails/LocationDetails'
+import { Row, Col, Select } from'antd'
+
+import ListCard from './../ListCard/ListCard'
 const { Option } = Select;
-const { Meta } = Card;
+
 
 function List({ className, places, place_type, setType, filterPlaces}){
 
@@ -15,9 +16,6 @@ function List({ className, places, place_type, setType, filterPlaces}){
     setType(value)
   }
 
-  const handleClick = () => {
-    console.log('No Link')
-  }
 
   return (
     <div className={styles.list_section}>
@@ -42,29 +40,7 @@ function List({ className, places, place_type, setType, filterPlaces}){
           places?.filter(place => place.name).map((place,index) => {
             return (
               <Col span={20} offset={2}>
-                <Card
-                  key={index}
-                  bordered={true}
-                  style={{ width: '90%' }}
-                  hoverable={true}
-                  cover={<img src={place.photo?.images.medium.url} alt="" className={styles.photo}/>}
-                >
-                  <Meta title={place.name} key={index}/>
-                  <Meta description={`Location: ${place.location_string ? place.location_string : 'N/A'}`}/>
-                  <Meta description={place.timezone}/>
-                  <Meta description={`Price: ${place.price ? place.price : 'N/A'}`}/>
-                  <Rate disabled allowHalf={true} value={Number(place.rating)} />
-                  <br/>
-                  {
-                    place.web_url ? (
-                      <a href={place.website}>
-                        <InfoCircleFilled style={{ marginTop: '12px', fontSize: '20px', color: '#00BFFF' }} value={place}/>
-                      </a>
-                    ) : <InfoCircleFilled style={{ marginTop: '12px', fontSize: '20px', color: '#00BFFF' }} value={place} onClick={handleClick}/>
-                  }
-                  
-                  {/* Note that can still add elements */}
-                </Card>
+                <ListCard place={place} index={index}/>
               </Col>
             )
           })
