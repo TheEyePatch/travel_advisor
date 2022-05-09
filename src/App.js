@@ -13,12 +13,19 @@ function App(){
   const [places, setPlaces] = useState([]);
   const [coordinates, setCoordinates] = useState({})
   const [bounds, setBounds] = useState({})
+  const [rating, setRating] = useState(0)
 
   const [place_type, setType] = useState('hotels')
+  const [filtered_places, setFilterdPlaces] = useState([])
 
   const getHotels = async (bounds, place_type) => {
     const data = await getPlacesData(bounds.sw, bounds.ne, place_type)
     setPlaces(data.data)
+    console.log(data.data)
+  }
+
+  const filterPlaces = (rate) => {
+    setRating(rate)
   }
 
   useEffect(() => {
@@ -29,6 +36,11 @@ function App(){
       console.log(error)
     });
     }, [])
+
+  useEffect(() => {
+    setFilterdPlaces(places.filter(place => place.rating >= rating))
+    console.log(rating)
+  },[places, rating])
 
   useEffect(() => {
     if(Object.keys(bounds).length > 0) getHotels(bounds, place_type)
@@ -42,9 +54,10 @@ function App(){
           <Col xs={{span: 24, order:1 }} md={{span: 10, order:0}} lg={8}>
             <List
             className={styles.list_section}
-            places={places}
+            places={filtered_places}
             place_type={place_type}
             setType={setType}
+            filterPlaces={filterPlaces}
             />
           </Col>
           <Col xs={{span: 24, order: 0 }} md={{span: 14, order:1}} lg={16}>
@@ -53,7 +66,7 @@ function App(){
               setCoordinates={setCoordinates}
               setBounds={setBounds}
               coordinates={coordinates}
-              places={places}
+              places={filtered_places}
             />
           </Col>
         </Row>

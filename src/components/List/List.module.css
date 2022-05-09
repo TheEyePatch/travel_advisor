@@ -5,6 +5,8 @@
 
 .list_type_select{
   margin: 10px 0 10px 10px;
+  display: flex;
+  justify-content: space-evenly;
 }
 
 .container_title{
