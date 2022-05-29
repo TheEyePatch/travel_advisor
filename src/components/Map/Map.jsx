@@ -19,14 +19,13 @@ function Map({className, setCoordinates, setBounds, coordinates, places}){
           key: 'AIzaSyB8hZaiUpwPEFMFMpe9bZhVM4d7cdiiIBk',
           language: 'en' 
         }}
-        defaultCenter={coordinates}
         center={coordinates}
         defaultZoom={16}
         onChange={handleChange}
       >
         {
           places?.map((place, index) => {
-            return (place.rating && place.price) && ( 
+            return (place.rating) && ( 
             <MapCard key={index} place={place} lat={place.latitude} lng={place.longitude} />
             )
           })
