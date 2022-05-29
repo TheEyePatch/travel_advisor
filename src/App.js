@@ -21,18 +21,16 @@ function App(){
   const getHotels = async (bounds, place_type) => {
     const data = await getPlacesData(bounds.sw, bounds.ne, place_type)
     setPlaces(data.data)
-    console.log(data.data)
   }
 
-  const filterPlaces = (rate) => {
+  const filterPlaces = (rate) => { 
     setRating(rate)
   }
 
   useEffect(() => {
     navigator.geolocation.getCurrentPosition( ({coords}) => {
-      console.log(coords)
       setCoordinates({lat: coords.latitude, lng: coords.longitude}) 
-    }, error => { 
+    }, error => {
       console.log(error)
     });
     }, [])
@@ -43,7 +41,7 @@ function App(){
   },[places, rating])
 
   useEffect(() => {
-    if(Object.keys(bounds).length > 0) getHotels(bounds, place_type)
+    if(bounds.sw && bounds.ne) getHotels(bounds, place_type)
   }, [bounds, place_type])
 
   return (
