@@ -22,3 +22,12 @@ export const getPlacesData = async (bl, tr, place_type) => {
     console.log(error)
   }
 }
+
+export const getGeoCodeData = async (params) => {
+  try {
+    const responseAPI = await axios.get(`https://geocode.maps.co/search?${params}`)
+    return responseAPI
+  }catch(error) {
+    console.log(error)
+  }
+}

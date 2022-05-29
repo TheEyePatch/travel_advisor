@@ -1,11 +1,14 @@
 import React from 'react';
-import { Autocomplete } from '@react-google-maps/api';
 import  styles from './Header.module.css'
 import { Input } from 'antd';
+import { getGeoCodeData } from './../../api/index'
 const { Search } = Input;
 
 function Header(){
-  const onSearch = ()=>{}
+  const onSearch = (value)=> {
+    let params = new URLSearchParams({ q: value })
+    getGeoCodeData(params).then((value) => console.log(value))
+  }
   const searchStyle = {
     width: 300,
     color: "#FAEBD7",
@@ -17,6 +20,8 @@ function Header(){
 
       <div className={styles.search_box}>
         <h6 className={styles.title}>Explore New Places</h6>
+
+        {/* can use this api => "https://geocode.maps.co/" for geocoding*/}
         <Search
           className='search_bar'
           placeholder="input search text" 

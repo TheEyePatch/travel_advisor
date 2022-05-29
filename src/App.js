@@ -46,7 +46,7 @@ function App(){
 
   return (
     <div className={styles.main}>
-      <Header/>
+      <Header setCoordinates={setCoordinates}/>
       <div className={styles.data_section}>
         <Row>
           <Col xs={{span: 24, order:1 }} md={{span: 10, order:0}} lg={8}>
