@@ -39,7 +39,7 @@ function List({ className, places, place_type, setType, filterPlaces}){
         {
           places?.filter(place => place.name).map((place,index) => {
             return (
-              <Col span={20} offset={2}>
+              <Col key={index} span={20} offset={2}>
                 <ListCard place={place} index={index}/>
               </Col>
             )
