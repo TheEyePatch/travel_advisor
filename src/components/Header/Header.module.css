@@ -26,9 +26,34 @@
   display: flex;
   align-items: center;
   margin-right: 1rem;
+  position: relative;
+  height: 50px;
 }
 
 .search_box .title{
   font-size: 1.5rem;
   margin-right: 1rem;
+}
+
+.search_box .search-items{
+  position: absolute;
+  top: 50px;
+  right: 0;
+  z-index: 1;
+}
+
+.search-items button{
+  display: block;
+  background-color: white;
+  border: none;
+  overflow: hidden;
+  font-size: medium;
+  width: 400px;
+  padding: 5px;
+  text-align: justify;
+}
+
+.search-items button:hover{
+  background-color: rgb(157, 203, 255);
+  cursor: pointer ;
 }

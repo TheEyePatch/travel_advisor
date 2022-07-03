@@ -1,18 +1,37 @@
-import React from 'react';
+import React, {useState, useMemo, useRef} from 'react';
 import  styles from './Header.module.css'
-import { Input } from 'antd';
+import { Input} from 'antd';
 import { getGeoCodeData } from './../../api/index'
+import SearchItems from './SearchItems'
+// import debounce from 'lodash/debounce';
 const { Search } = Input;
 
-function Header(){
+function Header({setCoordinates}){
+  const [geo_places, setGeoPlaces] = useState([]);
+
   const onSearch = (value)=> {
     let params = new URLSearchParams({ q: value })
-    getGeoCodeData(params).then((value) => console.log(value))
+    getGeoCodeData(params).then((value) =>{
+      console.log(value)
+      setGeoPlaces(value.data)
+    })
+  }
+
+  const searchPlace = (e) => {
+    let filteredPlaces = geo_places.filter(place => place.place_id == e.target.value)
+    console.log(filteredPlaces[0])
+    setGeoPlaces([])
+    setCoordinates({lat: Number(filteredPlaces[0].lat), lng: Number(filteredPlaces[0].lon)})
+  }
+
+  let searchResults = null;
+  if(geo_places.length > 0){
+    searchResults = <SearchItems places={geo_places} className={styles['search-items']} searchPlace={searchPlace}/>
   }
   const searchStyle = {
     width: 300,
     color: "#FAEBD7",
-    backgroundColor: "#00FFFF"
+    backgroundColor: "#00FFFF",
   }
   return (
     <div className={styles.header}>
@@ -29,6 +48,7 @@ function Header(){
           style={searchStyle}
           size='large'
           />
+          {searchResults}
       </div>
     </div>
   )
