@@ -37,7 +37,6 @@ function App(){
 
   useEffect(() => {
     setFilterdPlaces(places.filter(place => place.rating >= rating))
-    console.log(rating)
   },[places, rating])
 
   useEffect(() => {
