@@ -20,6 +20,7 @@ function App(){
 
   const getHotels = async (bounds, place_type) => {
     const data = await getPlacesData(bounds.sw, bounds.ne, place_type)
+    if(!data) return []
     setPlaces(data.data)
   }
 

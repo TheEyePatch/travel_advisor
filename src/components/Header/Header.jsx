@@ -1,4 +1,4 @@
-import React, {useState, useMemo, useRef} from 'react';
+import React, {useState} from 'react';
 import  styles from './Header.module.css'
 import { Input} from 'antd';
 import { getGeoCodeData } from './../../api/index'
@@ -12,14 +12,12 @@ function Header({setCoordinates}){
   const onSearch = (value)=> {
     let params = new URLSearchParams({ q: value })
     getGeoCodeData(params).then((value) =>{
-      console.log(value)
       setGeoPlaces(value.data)
     })
   }
 
   const searchPlace = (e) => {
     let filteredPlaces = geo_places.filter(place => place.place_id == e.target.value)
-    console.log(filteredPlaces[0])
     setGeoPlaces([])
     setCoordinates({lat: Number(filteredPlaces[0].lat), lng: Number(filteredPlaces[0].lon)})
   }
