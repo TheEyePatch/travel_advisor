@@ -18,7 +18,7 @@ function App(){
   const [place_type, setType] = useState('hotels')
   const [filtered_places, setFilterdPlaces] = useState([])
 
-  const getHotels = async (bounds, place_type) => {
+  const getPlaces = async (bounds, place_type) => {
     const data = await getPlacesData(bounds.sw, bounds.ne, place_type)
     if(!data) return []
     setPlaces(data.data)
@@ -41,7 +41,7 @@ function App(){
   },[places, rating])
 
   useEffect(() => {
-    if(bounds.sw && bounds.ne) getHotels(bounds, place_type)
+    if(bounds.sw && bounds.ne) getPlaces(bounds, place_type)
   }, [bounds, place_type])
 
   return (
