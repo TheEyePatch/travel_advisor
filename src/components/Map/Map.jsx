@@ -16,7 +16,7 @@ function Map({className, setCoordinates, setBounds, coordinates, places}){
     <div className={`${className} ${styles.map}`}>
       <GoogleMapReact
         bootstrapURLKeys={{ 
-          key: 'AIzaSyB8hZaiUpwPEFMFMpe9bZhVM4d7cdiiIBk',
+          key: process.env.REACT_APP_GOOGLE_MAP_SECRET_KEY,
           language: 'en' 
         }}
         center={coordinates}
