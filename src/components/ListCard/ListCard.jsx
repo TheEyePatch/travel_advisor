@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import styles from './ListCard.module.css';
-import { Card, Rate } from 'antd';
+import { Card, Rate, Modal } from 'antd';
 import { InfoCircleFilled } from '@ant-design/icons';
-
+import ListCardModal from "./../ListCardModal/ListCardModal";
 
 const { Meta } = Card;
 
 function ListCard({place, index}){
+  const [isModalVisible, setIsModalVisible] = useState(false);
   const handleClick = () => {
-    console.log('No Link')
+    setIsModalVisible(true)
   }
 
   return (
@@ -28,14 +29,16 @@ function ListCard({place, index}){
         <br/>
         {
           place.web_url ? (
-            <a href={place.web_url}>
-              <InfoCircleFilled style={{ marginTop: '12px', fontSize: '20px', color: '#00BFFF' }} value={place}/>
-            </a>
+            <div onClick={handleClick}>
+              <InfoCircleFilled style={{ marginTop: '12px', fontSize: '20px', color: '#00BFFF' }}/>
+            </div>
           ) : <InfoCircleFilled style={{ marginTop: '12px', fontSize: '20px', color: '#00BFFF' }} value={place} onClick={handleClick}/>
         }
         
         {/* Note that can still add elements */}
       </Card>
+
+      <ListCardModal setIsModalVisible={setIsModalVisible} isModalVisible={isModalVisible} place={place}/>
     </>
   )
 }
