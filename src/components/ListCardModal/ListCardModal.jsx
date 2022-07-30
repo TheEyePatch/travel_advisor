@@ -6,7 +6,6 @@ function ListCardModal({ isModalVisible, setIsModalVisible, place }){
 
   const handleCancel = () => {
     setIsModalVisible(false)
-    console.log(place)
   }
 
   return (
