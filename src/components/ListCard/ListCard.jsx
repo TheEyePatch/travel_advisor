@@ -2,16 +2,17 @@ import React, { useState } from 'react';
 import styles from './ListCard.module.css';
 import { Card, Rate, Modal } from 'antd';
 import { InfoCircleFilled } from '@ant-design/icons';
-import ListCardModal from "./../ListCardModal/ListCardModal";
 
 const { Meta } = Card;
 
 function ListCard({place, index}){
-  const [isModalVisible, setIsModalVisible] = useState(false);
-  const handleClick = () => {
-    setIsModalVisible(true)
-  }
 
+  const handleInfoClicked = () => {
+    Modal.error({
+      title: 'Web Page Unavailable',
+      content: `There are no present web page for ${place.name}`,
+    });
+  }
   return (
     <>
       <Card
@@ -28,17 +29,11 @@ function ListCard({place, index}){
         <Rate disabled allowHalf={true} value={Number(place.rating)} />
         <br/>
         {
-          place.web_url ? (
-            <div onClick={handleClick}>
-              <InfoCircleFilled style={{ marginTop: '12px', fontSize: '20px', color: '#00BFFF' }}/>
-            </div>
-          ) : <InfoCircleFilled style={{ marginTop: '12px', fontSize: '20px', color: '#00BFFF' }} value={place} onClick={handleClick}/>
+          place.web_url ? <a href={place.web_url}><InfoCircleFilled style={{ marginTop: '12px', fontSize: '20px', color: '#00BFFF' }}/></a>
+          : <InfoCircleFilled style={{ marginTop: '12px', fontSize: '20px', color: '#00BFFF' }} onClick={handleInfoClicked}/>
         }
-        
         {/* Note that can still add elements */}
       </Card>
-
-      <ListCardModal setIsModalVisible={setIsModalVisible} isModalVisible={isModalVisible} place={place}/>
     </>
   )
 }

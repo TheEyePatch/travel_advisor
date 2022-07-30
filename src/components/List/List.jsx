@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './List.module.css'
-// import LocationDetails from '../LocationDetails/LocationDetails'
 import { Row, Col, Select } from'antd'
 
 import ListCard from './../ListCard/ListCard'
